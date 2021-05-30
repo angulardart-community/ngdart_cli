@@ -8,7 +8,6 @@ void main(List<String> args) async {
   var runner = NgdartCommandRunner();
 
   try {
-    print(errorHeader);
     await runner.run(args);
   } on UsageException catch (e) {
     // print(errorHeader + '$e');
@@ -17,6 +16,6 @@ void main(List<String> args) async {
     exit(64);
   } catch (e) {
     print(e);
-    throw exitCode;
+    exit(exitCode);
   }
 }

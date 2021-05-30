@@ -3,7 +3,6 @@ description: A command-line tool for creating and managing AngularDart apps.
 version: 1.0.0
 authors:
   - Gavin Zhao <gavinzhaojw@protonmail.com>
-homepage: https://www.example.com
 executables:
   ngdart:
 

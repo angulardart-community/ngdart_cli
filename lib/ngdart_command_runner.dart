@@ -2,9 +2,10 @@ import 'dart:async';
 
 import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
-import 'package:ngdart/src/commands/create.dart';
 
 import 'constants.dart';
+import 'src/commands/create.dart';
+import 'src/commands/clean.dart';
 
 Future<int?> run(List<String> args) => NgdartCommandRunner().run(args);
 
@@ -13,6 +14,7 @@ class NgdartCommandRunner extends CommandRunner<int> {
     argParser.addFlag('version',
         negatable: false, help: 'Prints the version of ngdart.');
     addCommand(CreateCommand());
+    addCommand(CleanCommand());
   }
 
   @override
