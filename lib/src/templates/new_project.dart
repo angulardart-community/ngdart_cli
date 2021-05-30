@@ -10,13 +10,10 @@ import '../../constants.dart';
 part 'new_project.g.dart';
 
 Future<void> CreateNewProject(ArgResults argResults, String name) async {
-  var data = _data;
-  for (var i = 0; i < data.length; i += 3) {
-    final path = name + '/' + data[i];
-    final type = data[i + 1];
-    final raw = data[i + 2].replaceAll(whiteSpace, '');
-
-    // print('$name/${path.substring(0, path.length - p.basename(path).length)}');
+  for (var i = 0; i < _data.length; i += 3) {
+    final path = name + '/' + _data[i];
+    final type = _data[i + 1];
+    final raw = _data[i + 2].replaceAll(whiteSpace, '');
 
     final targetDir =
         Directory(path.substring(0, path.length - p.basename(path).length));
