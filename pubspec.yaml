@@ -1,0 +1,27 @@
+name: ngdart
+description: A command-line tool for creating and managing AngularDart apps.
+version: 1.0.0
+authors:
+  - Gavin Zhao <gavinzhaojw@protonmail.com>
+homepage: https://www.example.com
+executables:
+  ngdart:
+
+environment:
+  sdk: '>=2.12.0 <3.0.0'
+
+dependencies: 
+  ansicolor: ^2.0.1
+  args: ^2.1.0
+  logging: ^1.0.1
+  mustache: ^1.1.1
+  path: ^1.8.0
+  webdev: ^2.7.4
+
+dev_dependencies: 
+  build: ^2.0.2
+  build_config: ^0.4.7
+  build_runner: ^1.12.2
+  # build_version: ^2.0.2
+  build_version: ^2.0.2
+  test: ^1.16.5

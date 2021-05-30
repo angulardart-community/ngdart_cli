@@ -1,0 +1,20 @@
+targets:
+  $default:
+    sources:
+      include:
+        - pubspec.yaml
+        - lib/**
+        - template/**
+        - $package$
+    builders:
+      ngdart:
+        generate_for:
+          - lib/src/templates/*.dart
+        enabled: true
+
+builders:
+  ngdart:
+    import: "lib/util/builder.dart"
+    builder_factories: ["buildTemplate"]
+    build_extensions: {".dart": [".g.dart"]}
+    build_to: source
