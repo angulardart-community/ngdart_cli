@@ -6,14 +6,13 @@ import 'package:ngdart/src/commands/create.dart';
 
 import 'constants.dart';
 
-Future<int?> run(List<String> args) => _CommandRunner().run(args);
+Future<int?> run(List<String> args) => NgdartCommandRunner().run(args);
 
-class _CommandRunner extends CommandRunner<int> {
-  _CommandRunner() : super(appName, 'A command-line tool for creating and managing AngularDart apps.') {
+class NgdartCommandRunner extends CommandRunner<int> {
+  NgdartCommandRunner() : super(appName, 'A command-line tool for creating and managing AngularDart apps.') {
     argParser.addFlag('version',
         negatable: false, help: 'Prints the version of ngdart.');
     addCommand(CreateCommand());
-    // addCommand(BuildCommand());
   }
 
   @override

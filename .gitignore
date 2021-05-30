@@ -4,3 +4,8 @@
 
 # Conventional directory for build output.
 build/
+
+# Build outputs
+*.exe
+*.dill
+*.aot

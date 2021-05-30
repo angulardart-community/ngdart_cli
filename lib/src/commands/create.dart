@@ -34,39 +34,16 @@ class CreateCommand extends Command<int> {
   }
 
   CreateCommand() {
-    argParser.addFlag('force', abbr: 'f', negatable: false);
-    argParser.addOption('path', abbr: 'p', defaultsTo: '.');
+    argParser.addFlag('force', abbr: 'f', negatable: false, help: 'Force generation into the target directory, overwrite files when needed.');
+    argParser.addOption('path', abbr: 'p', defaultsTo: '.', help: 'Specify the location to create the project.');
   }
 
   @override
   FutureOr<int> run() async {
-    print('projectName: ${readArg('aha!')}');
-    print('force: ${argResults!['force']}');
-    await CreateNewProject(argResults!, readArg('bruh no project name'));
+    // print('projectName: ${readArg('aha!')}');
+    // print('force: ${argResults!['force']}');
+    // print('dir: ${argResults?['path']}');
+    await CreateNewProject(argResults!, readArg('Requires a project name'));
     return 1;
   }
 }
-
-
-
-  // final _argParser = ArgParser(allowTrailingOptions: true);
-  // ArgParser get argParser => _argParser;
-
-  // String readArg(String errorMessage) {
-  //   var args = argResults?.rest;
-
-  //   if (args == null || args.isEmpty) {
-  //     // Usage is provided by command runner.
-  //     throw UsageException(errorMessage, '');
-  //   }
-
-  //   // TODO: I am skeptic about the usefulness of the following code
-  //   var arg = args.first;
-  //   args = args.skip(1).toList();
-
-  //   if (args.isEmpty) {
-  //     throw UsageException('Unexpected argument $args', '');
-  //   }
-
-  //   return arg;
-  // }
