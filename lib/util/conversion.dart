@@ -1,6 +1,4 @@
-final _substituteRegExp = RegExp(r'__([a-zA-Z]+)__');
-final _nonValidSubstituteRegExp = RegExp('[^a-zA-Z]');
-final _whiteSpace = RegExp(r'\s+');
+import '../constants.dart';
 
 /// Convert the name of a project into a legal pub package name.
 String normalizeProjectName(String name) {
@@ -15,11 +13,11 @@ String normalizeProjectName(String name) {
 }
 
 String substituteVars(String str, Map<String, String> vars) {
-  if (vars.keys.any((element) => element.contains(_nonValidSubstituteRegExp))) {
+  if (vars.keys.any((element) => element.contains(nonValidSubstituteRegExp))) {
     throw ArgumentError('vars.keys can only contain letters.');
   }
 
-  return str.replaceAllMapped(_substituteRegExp, (match) {
+  return str.replaceAllMapped(substituteRegExp, (match) {
     final item = vars[match[1]];
 
     if (item == null) {

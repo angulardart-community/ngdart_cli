@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
+import 'package:ngdart/src/commands/create.dart';
 
 import 'constants.dart';
 
@@ -11,7 +12,7 @@ class _CommandRunner extends CommandRunner<int> {
   _CommandRunner() : super(appName, 'A command-line tool for creating and managing AngularDart apps.') {
     argParser.addFlag('version',
         negatable: false, help: 'Prints the version of ngdart.');
-    // addCommand()
+    addCommand(CreateCommand());
     // addCommand(BuildCommand());
   }
 
