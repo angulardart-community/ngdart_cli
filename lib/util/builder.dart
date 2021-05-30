@@ -16,8 +16,6 @@ Builder buildTemplate([BuilderOptions? options]) => _TemplateBuilder();
 class _TemplateBuilder implements Builder {
   @override
   Future build(BuildStep buildStep) async {
-    // final topFolder = AssetId(buildStep.inputId.package, 'template/');
-
     final name = p.basenameWithoutExtension(buildStep.inputId.path);
     final targetFile =
         AssetId(buildStep.inputId.package, 'lib/src/templates/$name.g.dart');

@@ -4,7 +4,7 @@ targets:
       include:
         - pubspec.yaml
         - lib/**
-        - template/**
+        - templates/**
         - $package$
     builders:
       ngdart:
