@@ -1,8 +1,12 @@
 import 'package:ansicolor/ansicolor.dart';
 
-AnsiPen errorPen = AnsiPen()..rgb(r: 1, g: 0, b: 0)..black();
-AnsiPen errorTriangle = AnsiPen()..red();
-AnsiPen progressPen = AnsiPen()..black()..cyan();
-AnsiPen successPen = AnsiPen()..black()..green();
+AnsiPen errorPen = AnsiPen()..black()..xterm(160, bg: true);
+AnsiPen errorTriangle = AnsiPen()..xterm(160);
+AnsiPen progressPen = AnsiPen()..black()..xterm(045, bg: true);
+AnsiPen progressTriangle = AnsiPen()..xterm(045);
+AnsiPen successPen = AnsiPen()..black()..xterm(040, bg: true);
+AnsiPen successTriangle = AnsiPen()..xterm(040);
 
-var errorHeader = errorPen(' 🕱 ') + errorTriangle('');
+var errorLog = errorPen(' 🕱 ') + errorTriangle('') + ' ';
+var progressLog = progressPen(' ⮞ ') + progressTriangle('') + ' ';
+var successLog = successPen(' 🗸 ') + successTriangle('') + ' ';

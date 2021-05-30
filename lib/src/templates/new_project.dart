@@ -17,7 +17,7 @@ Future<void> CreateNewProject(ArgResults argResults, String name) async {
     if (await Directory(projectDirUrl).exists()) {
       throw UsageException(
           'Project directory not empty.\n\nCreate a new project '
-              'directory, or use --force to force generation into the current directory.',
+              'directory, or use --force to force generation into the target directory.',
           '');
     }
   }

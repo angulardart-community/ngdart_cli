@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:args/command_runner.dart';
 import 'package:ngdart/src/templates/new_project.dart';
+import 'package:ngdart/util/ansipen.dart';
+import 'package:ngdart/util/conversion.dart';
 
 class CreateCommand extends Command<int> {
   @override
@@ -34,7 +36,7 @@ class CreateCommand extends Command<int> {
   }
 
   CreateCommand() {
-    argParser.addFlag('force', abbr: 'f', negatable: false, help: 'Force generation into the target directory, overwrite files when needed.');
+    argParser.addFlag('force', abbr: 'f', negatable: false, help: 'Force generation into the target directory, overwriting files when needed.');
     argParser.addOption('path', abbr: 'p', defaultsTo: '.', help: 'Specify the location to create the project.');
   }
 
@@ -43,7 +45,11 @@ class CreateCommand extends Command<int> {
     // print('projectName: ${readArg('aha!')}');
     // print('force: ${argResults!['force']}');
     // print('dir: ${argResults?['path']}');
-    await CreateNewProject(argResults!, readArg('Requires a project name'));
+    var projectName = normalizeProjectName(readArg('Requires a project name'));
+    print(progressLog + 'Creating project...');
+    await CreateNewProject(argResults!, projectName);
+    print(successLog + 'Created project \"$projectName\"');
+
     return 1;
   }
 }
