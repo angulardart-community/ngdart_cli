@@ -1,6 +1,6 @@
 name: ngdart
 description: A command-line tool for creating and managing AngularDart projects.
-version: 1.0.0
+version: 1.0.1
 homepage: https://github.com/GZGavinZhao/ngdart
 repository: https://github.com/GZGavinZhao/ngdart
 executables:
