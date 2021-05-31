@@ -1,5 +1,8 @@
 # ngdart
 
+[![Pub package](https://img.shields.io/pub/v/ngdart.svg)](https://pub.dev/packages/ngdart)
+![GitHub](https://img.shields.io/github/license/GZGavinZhao/ngdart)
+
 A command-line tool for creating and managing AngularDart projects.
 
 ## Usage
