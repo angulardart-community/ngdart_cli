@@ -38,6 +38,7 @@ Also, as a Flutter developer myself, I'm often envious of how many useful tools 
 
 Feel free to create pull requests on any of these goals! :) To prevent doing duplicate work, I marked the ones that I myself is currently working on.
 
-* [ ] Add `--verbose` global flag [currently working on]
-* [ ] Add `ngdart build` and `ngdart serve` command (likely from [webdev](https://pub.dev/packages/webdev), but null safety has been a problem for me)
-* [ ] Generate components (a function that [angular_cli](https://pub.dev/packages/angular_cli) provides, though I'm unsure if this is useful for many developers)
+* [ ] Add `--verbose` global flag. [currently working on]
+* [ ] Run `pub get` (or prompt the user to run) after creating a project.
+* [ ] Add `ngdart build` and `ngdart serve` command (likely from [webdev](https://pub.dev/packages/webdev), but null safety has been a problem for me).
+* [ ] Generate components (a function that [angular_cli](https://pub.dev/packages/angular_cli) provides, though I'm unsure if this is useful for many developers).

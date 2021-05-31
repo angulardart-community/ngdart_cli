@@ -11,7 +11,6 @@ void main(List<String> args) async {
     await runner.run(args);
   } on UsageException catch (e) {
     print(errorLog + '$e');
-    print(runner.usage);
     exit(64);
   } catch (e) {
     print(errorLog + '$e');
