@@ -14,5 +14,4 @@ include: package:pedantic/analysis_options.yaml
 analyzer:
   exclude:
     - templates/**
-    - bruh/**
-#     - path/to/excluded/files/**
+    - bruh/** # The folder I use as a dummy folder for testing

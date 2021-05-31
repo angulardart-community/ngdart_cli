@@ -10,7 +10,7 @@ import 'src/commands/clean.dart';
 Future<int?> run(List<String> args) => NgdartCommandRunner().run(args);
 
 class NgdartCommandRunner extends CommandRunner<int> {
-  NgdartCommandRunner() : super(appName, 'A command-line tool for creating and managing AngularDart apps.') {
+  NgdartCommandRunner() : super(appName, 'A command-line tool for creating and managing AngularDart projects.') {
     argParser.addFlag('version',
         negatable: false, help: 'Prints the version of ngdart.');
     addCommand(CreateCommand());
