@@ -10,7 +10,6 @@ void main(List<String> args) async {
   try {
     await runner.run(args);
   } on UsageException catch (e) {
-    // print(errorHeader + '$e');
     print(errorLog + '$e');
     print(runner.usage);
     exit(64);
