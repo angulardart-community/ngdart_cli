@@ -7,6 +7,10 @@ AnsiPen progressTriangle = AnsiPen()..xterm(045);
 AnsiPen successPen = AnsiPen()..black()..xterm(040, bg: true);
 AnsiPen successTriangle = AnsiPen()..xterm(040);
 
-var errorLog = errorPen(' 🕱 ') + errorTriangle('') + ' ';
-var progressLog = progressPen(' ⮞ ') + progressTriangle('') + ' ';
-var successLog = successPen(' 🗸 ') + successTriangle('') + ' ';
+// Unfortunately these are illegal characters...
+// var errorLog = errorPen(' 🕱 ') + errorTriangle('') + ' ';
+// var progressLog = progressPen(' ⮞ ') + progressTriangle('') + ' ';
+// var successLog = successPen(' 🗸 ') + successTriangle('') + ' ';
+var errorLog = errorTriangle('[Error] ');
+var progressLog = progressTriangle('[Info] ');
+var successLog = successTriangle('[Success] ');
