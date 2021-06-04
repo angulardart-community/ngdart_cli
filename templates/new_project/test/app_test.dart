@@ -7,7 +7,7 @@ import 'package:__projectName__/app_component.template.dart' as ng;
 void main() {
   final testBed =
       NgTestBed.forComponent<AppComponent>(ng.AppComponentNgFactory);
-  NgTestFixture<AppComponent> fixture;
+  late NgTestFixture<AppComponent> fixture;
 
   setUp(() async {
     fixture = await testBed.create();
