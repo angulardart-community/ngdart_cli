@@ -4,6 +4,7 @@ import 'package:args/command_runner.dart';
 import 'package:ngdart/src/templates/new_project.dart';
 import 'package:ngdart/util/ansipen.dart';
 import 'package:ngdart/util/conversion.dart';
+import 'package:ngdart/util/logger.dart';
 
 class CreateCommand extends Command<int> {
   @override
@@ -46,9 +47,12 @@ class CreateCommand extends Command<int> {
     // print('force: ${argResults!['force']}');
     // print('dir: ${argResults?['path']}');
     var projectName = normalizeProjectName(readArg('Requires a project name'));
+    // var progress = AppLogger.logger.progress('Creating project');
     print(progressLog + 'Creating project...');
     await CreateNewProject(argResults!, projectName);
-    print(successLog + 'Created project \"$projectName\"');
+    // progress.finish(showTiming: true);
+    AppLogger.success('Created project \"$projectName\"');
+    // print(successLog + 'Created project \"$projectName\"');
 
     return 0;
   }

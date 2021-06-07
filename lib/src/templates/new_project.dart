@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
+import 'package:ngdart/util/logger.dart';
 import 'package:path/path.dart' as p;
 
 import 'package:ngdart/util/conversion.dart';
@@ -42,5 +43,6 @@ Future<void> CreateNewProject(ArgResults argResults, String name) async {
       final decoded = base64.decode(raw);
       await File(path).writeAsBytes(decoded);
     }
+    AppLogger.trace('created file at $path');
   }
 }

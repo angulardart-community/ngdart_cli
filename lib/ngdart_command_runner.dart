@@ -4,6 +4,7 @@ import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
 
 import 'constants.dart';
+import 'util/logger.dart';
 import 'src/commands/create.dart';
 import 'src/commands/clean.dart';
 
@@ -24,7 +25,7 @@ class NgdartCommandRunner extends CommandRunner<int> {
       print(packageVersion);
       return 0;
     }
-
+    AppLogger.isVerbose = topLevelResults['verbose'];
     // In the case of `help`, `null` is returned. Treat that as success.
     return await super.runCommand(topLevelResults) ?? 0;
   }
