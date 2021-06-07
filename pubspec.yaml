@@ -13,8 +13,8 @@ dependencies:
   ansicolor: ^2.0.1
   args: ^2.1.0
   build: ^2.0.2
+  cli_util: ^0.3.0
   glob: ^2.0.1
-  logging: ^1.0.1
   path: ^1.8.0
 
 dev_dependencies: 

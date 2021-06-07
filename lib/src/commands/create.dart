@@ -16,7 +16,7 @@ class CreateCommand extends Command<int> {
   String get invocation =>
       'ngdart create <project_name> [--path <project/path>] [--force]';
 
-  /// Reads argument for current command.
+  // Reads argument for current command.
   String readArg(String errorMessage) {
     var args = argResults?.rest;
 
@@ -50,6 +50,6 @@ class CreateCommand extends Command<int> {
     await CreateNewProject(argResults!, projectName);
     print(successLog + 'Created project \"$projectName\"');
 
-    return 1;
+    return 0;
   }
 }

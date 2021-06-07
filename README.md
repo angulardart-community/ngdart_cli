@@ -30,7 +30,7 @@ ngdart clean
 
 ## Motivation
 
-[Stagehand](https://pub.dev/packages/stagehand), the tool that many AngularDart developers use to generate a starter, has been discontinued in favor of `dart create`. However, since `dart create` doesn't have an option for AngularDart projects, developers are left with nothing but [quickstart](https://github.com/googlearchive/quickstart/tree/master) and [angular_cli](https://pub.dev/packages/angular_cli), which are both great options but very outdated. Hence, `ngdart` is created to compensate for the lack of tools.
+[Stagehand](https://pub.dev/packages/stagehand), the tool that many AngularDart developers use to generate a starter project, has been discontinued in favor of `dart create`. However, since `dart create` doesn't have an option for AngularDart projects, developers are left with nothing but [quickstart](https://github.com/googlearchive/quickstart/tree/master) and [angular_cli](https://pub.dev/packages/angular_cli), which are both great options but very outdated. Hence, `ngdart` is created to compensate for the lack of tools.
 
 Also, as a Flutter developer myself, I'm often envious of how many useful tools that the Flutter cli tool provides (such as `flutter clean`). Hence, another purpose of `ngdart` is to unify the all the tools developers need to create a brilliant AngularDart project. The first step is `ngdart clean`, and more is coming (see [Future Plans](#future-plans)) below)
 
@@ -39,6 +39,7 @@ Also, as a Flutter developer myself, I'm often envious of how many useful tools 
 Feel free to create pull requests on any of these goals! :) To prevent doing duplicate work, I marked the ones that I myself is currently working on.
 
 * [ ] Add `--verbose` global flag. [currently working on]
+* [ ] Prompt user to update (by checking the latest version on Pub and compare to [`packageVersion`](lib/src/version.dart)).
 * [ ] Run `pub get` (or prompt the user to run) after creating a project.
 * [ ] Add `ngdart build` and `ngdart serve` command (likely from [webdev](https://pub.dev/packages/webdev), but null safety has been a problem for me).
 * [ ] Generate components (a function that [angular_cli](https://pub.dev/packages/angular_cli) provides, though I'm unsure if this is useful for many developers).

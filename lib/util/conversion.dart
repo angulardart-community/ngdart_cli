@@ -1,6 +1,6 @@
 import '../constants.dart';
 
-/// Convert the name of a project into a legal pub package name.
+// Convert the name of a project into a legal pub package name.
 String normalizeProjectName(String name) {
   name = name.replaceAll('-', '_').replaceAll(' ', '_');
 
