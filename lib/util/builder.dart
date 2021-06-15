@@ -30,7 +30,7 @@ class _TemplateBuilder implements Builder {
         return false;
       } else if (_allowedDotFiles.contains(rootSegment)) {
         // If it's a .gitignore file
-        return false;
+        return true;
       } else {
         return !rootSegment.startsWith('.');
       }
