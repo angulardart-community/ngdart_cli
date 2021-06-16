@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Run `pub get` after creating a new project.
 ### Removed
-- Remoed unnecessary models, though this doesn't affect to the program at all
+- Remoed unnecessary models, though this doesn't affect the program at all
 
 ## [1.0.1] - 2021-05-31
 ### Fixed
