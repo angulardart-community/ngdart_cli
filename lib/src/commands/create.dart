@@ -51,12 +51,12 @@ class CreateCommand extends Command<int> {
     var projectName = normalizeProjectName(readArg('Requires a project name'));
     // var progress = AppLogger.logger.progress('Creating project');
     print(progressLog + 'Creating project...');
-    await CreateNewProject(argResults!, projectName);
+    await CreateNewProject(argResults, projectName);
     // progress.finish(showTiming: true);
     AppLogger.success('Created project \"$projectName\"');
     // print(successLog + 'Created project \"$projectName\"');
 
-		if (argResults?['pub'] == true) {
+		if (argResults['pub'] == true) {
 			var progress = AppLogger.logger.progress('\n' + progressLog + 'Running \'pub get\' in the project folder');
 			await Process.run('pub', ['get'], runInShell: true, workingDirectory: '$projectName/').onError((error, stackTrace) => throw Exception(error));
 			progress.finish(showTiming: true);

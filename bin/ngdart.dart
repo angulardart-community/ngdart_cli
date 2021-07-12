@@ -5,6 +5,8 @@ import 'package:ngdart/ngdart_command_runner.dart';
 import 'package:ngdart/util/ansipen.dart';
 
 void main(List<String> args) async {
+	args = ['build', '-h'];
+
   var runner = NgdartCommandRunner();
 
   try {

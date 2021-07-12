@@ -11,7 +11,7 @@ final RegExp _binaryFileTypes = RegExp(
     r'\.(jpe?g|png|gif|ico|svg|ttf|eot|woff|woff2)$',
     caseSensitive: false);
 
-Builder buildTemplate([BuilderOptions? options]) => _TemplateBuilder();
+Builder buildTemplate([BuilderOptions options]) => _TemplateBuilder();
 
 class _TemplateBuilder implements Builder {
   @override

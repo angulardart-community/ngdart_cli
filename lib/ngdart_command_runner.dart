@@ -2,13 +2,14 @@ import 'dart:async';
 
 import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
+import 'package:webdev/src/command/build_command.dart';
 
 import 'constants.dart';
 import 'util/logger.dart';
 import 'src/commands/create.dart';
 import 'src/commands/clean.dart';
 
-Future<int?> run(List<String> args) => NgdartCommandRunner().run(args);
+Future<int> run(List<String> args) => NgdartCommandRunner().run(args);
 
 class NgdartCommandRunner extends CommandRunner<int> {
   NgdartCommandRunner() : super(appName, 'A command-line tool for creating and managing AngularDart projects.') {
@@ -17,6 +18,7 @@ class NgdartCommandRunner extends CommandRunner<int> {
     argParser.addFlag('verbose', negatable: false, help: 'Show additional command output');
     addCommand(CreateCommand());
     addCommand(CleanCommand());
+		addCommand(BuildCommand());
   }
 
   @override

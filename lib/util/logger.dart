@@ -33,15 +33,15 @@ class AppLogger {
   // var successLog = successTriangle('[Success] ');
 
   static void error(String message) {
-    logger.stderr('${pens['error']!('[Error]')} $message');
+    logger.stderr('${pens['error']('[Error]')} $message');
   }
   static void info(String message) {
-    logger.stdout('${pens['info']!('[Info]')} $message');
+    logger.stdout('${pens['info']('[Info]')} $message');
   }
   static void success(String message) {
-    logger.stdout('${pens['success']!('[Sucess]')} $message');
+    logger.stdout('${pens['success']('[Sucess]')} $message');
   }
   static void trace(String message) {
-    logger.trace('${pens['info']!('[Trace]')} $message');
+    logger.trace('${pens['info']('[Trace]')} $message');
   }
 }
