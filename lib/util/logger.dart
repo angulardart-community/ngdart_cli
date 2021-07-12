@@ -1,6 +1,5 @@
 import 'package:ansicolor/ansicolor.dart';
 import 'package:cli_util/cli_logging.dart';
-import 'package:cli_util/cli_util.dart';
 
 class AppLogger {
   static bool isVerbose = false;
