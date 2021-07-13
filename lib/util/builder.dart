@@ -6,7 +6,7 @@ import 'package:build/build.dart';
 import 'package:glob/glob.dart';
 import 'package:path/path.dart' as p;
 
-const List<String> _allowedDotFiles = <String>['.gitignore'];
+const List<String> _allowedDotFiles = <String>['.gitignore', '.vscode'];
 final RegExp _binaryFileTypes = RegExp(
     r'\.(jpe?g|png|gif|ico|svg|ttf|eot|woff|woff2)$',
     caseSensitive: false);
