@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.3] - 2021-07-12
+### Added
+- Launch settings for vscode so users don't need to set them up manually
+- `build` and `serve` command from [`webdev`](https://pub.dev/packages/webdev)
+### Removed
+- **OPT OUT OF NULL SAFETY** to use `webdev` commands. Will opt in later when `webdev` is fully migrated.
+
 ## [1.0.2] - 2021-06-14
 ### Fixed
 - Fix missing `.gitignore` file (isn't generated when creating).
