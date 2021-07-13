@@ -15,6 +15,6 @@ dev_dependencies:
   build_runner: ^1.9.0
   build_test: ^1.0.0
   build_web_compilers: ^2.10.0
-  meta: ^1.4.0 # As of 07/12/2021, Dart throws errors if meta is 1.4.0 or above
+  meta: <1.7.0 # As of 07/12/2021, Dart throws errors if meta is 1.7.0 or above
   pedantic: ^1.9.0
   test: ^1.6.3
