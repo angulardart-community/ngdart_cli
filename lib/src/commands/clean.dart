@@ -12,7 +12,7 @@ class CleanCommand extends Command<int> {
 
   @override
   String get name => 'clean';
-  
+
   @override
   String get invocation => 'ngdart clean';
 
@@ -20,7 +20,7 @@ class CleanCommand extends Command<int> {
   FutureOr<int> run() async {
     var buildDir = Directory('build');
     var toolDir = Directory('.dart_tool');
-		var packages = File('.packages');
+    var packages = File('.packages');
     var pubspec = File('pubspec.yaml');
     var logger = Logger.standard(ansi: Ansi(true));
 
@@ -33,17 +33,16 @@ class CleanCommand extends Command<int> {
         await buildDir.delete(recursive: true);
         progress.finish(showTiming: true);
       }
-      if (await toolDir.exists())
-      {
+      if (await toolDir.exists()) {
         var progress = logger.progress(progressLog + 'Deleting .dart_tools');
         await toolDir.delete(recursive: true);
         progress.finish(showTiming: true);
       }
-			if (await packages.exists()) {
-				var progress = logger.progress(progressLog + 'Deleting .packages');
-				await packages.delete();
-				progress.finish(showTiming: true);
-			}
+      if (await packages.exists()) {
+        var progress = logger.progress(progressLog + 'Deleting .packages');
+        await packages.delete();
+        progress.finish(showTiming: true);
+      }
     } catch (e) {
       throw Exception(e);
     }

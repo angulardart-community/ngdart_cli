@@ -2,11 +2,13 @@ import 'dart:async';
 
 import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
+import 'package:ngdart/src/commands/serve.dart';
 
 import 'constants.dart';
 import 'util/logger.dart';
 import 'src/commands/create.dart';
 import 'src/commands/clean.dart';
+import 'src/commands/build.dart';
 
 Future<int?> run(List<String> args) => NgdartCommandRunner().run(args);
 
@@ -17,6 +19,8 @@ class NgdartCommandRunner extends CommandRunner<int> {
     argParser.addFlag('verbose', negatable: false, help: 'Show additional command output');
     addCommand(CreateCommand());
     addCommand(CleanCommand());
+	addCommand(NgBuildCommand());
+	addCommand(NgServeCommand());
   }
 
   @override

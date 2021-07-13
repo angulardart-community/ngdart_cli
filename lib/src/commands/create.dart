@@ -38,13 +38,24 @@ class CreateCommand extends Command<int> {
   }
 
   CreateCommand() {
-    argParser.addFlag('force', abbr: 'f', negatable: false, help: 'Force generation into the target directory, overwriting files when needed.');
-		argParser.addFlag('pub', negatable: true, defaultsTo: true, help: 'Whether to run \'pub get\' after the project has been created.');
-    argParser.addOption('path', abbr: 'p', defaultsTo: '.', help: 'Specify the location to create the project.');
+    argParser.addFlag('force',
+        abbr: 'f',
+        negatable: false,
+        help:
+            'Force generation into the target directory, overwriting files when needed.');
+    argParser.addFlag('pub',
+        negatable: true,
+        defaultsTo: true,
+        help: 'Whether to run \'pub get\' after the project has been created.');
+    argParser.addOption('path',
+        abbr: 'p',
+        defaultsTo: '.',
+        help: 'Specify the location to create the project.');
   }
 
   @override
   FutureOr<int> run() async {
+    // TODO: Add to "verbose" option
     // print('projectName: ${readArg('aha!')}');
     // print('force: ${argResults!['force']}');
     // print('dir: ${argResults?['path']}');
@@ -56,12 +67,15 @@ class CreateCommand extends Command<int> {
     AppLogger.success('Created project \"$projectName\"');
     // print(successLog + 'Created project \"$projectName\"');
 
-		if (argResults?['pub'] == true) {
-			var progress = AppLogger.logger.progress('\n' + progressLog + 'Running \'pub get\' in the project folder');
-			await Process.run('pub', ['get'], runInShell: true, workingDirectory: '$projectName/').onError((error, stackTrace) => throw Exception(error));
-			progress.finish(showTiming: true);
-			AppLogger.success('Completed!');
-		}
+    if (argResults?['pub'] == true) {
+      var progress = AppLogger.logger.progress(
+          '\n' + progressLog + 'Running \'pub get\' in the project folder');
+      await Process.run('pub', ['get'],
+              runInShell: true, workingDirectory: '$projectName/')
+          .onError((error, stackTrace) => throw Exception(error));
+      progress.finish(showTiming: true);
+      AppLogger.success('Completed!');
+    }
     return 0;
   }
 }
