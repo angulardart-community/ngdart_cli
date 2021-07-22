@@ -1,3 +1,6 @@
+import 'dart:io';
+import 'dart:async';
+
 import 'package:ansicolor/ansicolor.dart';
 import 'package:cli_util/cli_logging.dart';
 
@@ -35,12 +38,15 @@ class AppLogger {
   static void error(String message) {
     logger.stderr('${pens['error']('[ERROR]')} $message');
   }
+
   static void info(String message) {
     logger.stdout('${pens['info']('[INFO]')} $message');
   }
+
   static void success(String message) {
     logger.stdout('${pens['success']('[SUCCESS]')} $message');
   }
+
   static void trace(String message) {
     logger.trace('${pens['info']('[TRACE]')} $message');
   }

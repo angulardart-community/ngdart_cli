@@ -15,6 +15,7 @@ dependencies:
   build: ^2.0.3
   cli_util: ^0.3.3
   glob: ^2.0.1
+  interact: ^2.0.0
   path: ^1.8.0
   webdev: ^2.7.4
 
