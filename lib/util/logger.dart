@@ -1,53 +1,67 @@
 import 'dart:io';
-import 'dart:async';
 
-import 'package:ansicolor/ansicolor.dart';
-import 'package:cli_util/cli_logging.dart';
+import 'package:io/ansi.dart';
+import 'package:logging/logging.dart';
 
-class AppLogger {
-  static bool isVerbose = false;
-  static var logger = isVerbose ? Logger.verbose() : Logger.standard();
+class CliLogger {
+  static bool verbose = false;
 
-  static Map<String, AnsiPen> pens = {
-    'error': AnsiPen()..xterm(160),
-    'info': AnsiPen()..xterm(045),
-    'success': AnsiPen()..xterm(040),
-  };
+  static bool canUseColor = true;
 
-  // AnsiPen errorPen = AnsiPen()
-  //   ..black()
-  //   ..xterm(160, bg: true);
-  // AnsiPen errorTriangle = AnsiPen()..xterm(160);
-  // AnsiPen progressPen = AnsiPen()
-  //   ..black()
-  //   ..xterm(045, bg: true);
-  // AnsiPen progressTriangle = AnsiPen()..xterm(045);
-  // AnsiPen successPen = AnsiPen()
-  //   ..black()
-  //   ..xterm(040, bg: true);
-  // AnsiPen successTriangle = AnsiPen()..xterm(040);
-
-  // Unfortunately these are illegal characters...
-  // var errorLog = errorPen(' 🕱 ') + errorTriangle('') + ' ';
-  // var progressLog = progressPen(' ⮞ ') + progressTriangle('') + ' ';
-  // var successLog = successPen(' 🗸 ') + successTriangle('') + ' ';
-  // var errorLog = errorTriangle('[Error] ');
-  // var progressLog = progressTriangle('[Info] ');
-  // var successLog = successTriangle('[Success] ');
-
-  static void error(String message) {
-    logger.stderr('${pens['error']('[ERROR]')} $message');
+  /// Initialize logger
+  static void initLogger() {
+    canUseColor = stdout.supportsAnsiEscapes;
+    Logger.root.onRecord.listen((record) {
+			printLog(record);
+    });
   }
 
-  static void info(String message) {
-    logger.stdout('${pens['info']('[INFO]')} $message');
+  static void setVerbosity(bool _verbose) {
+		verbose = _verbose;
+    if (_verbose) {
+      Logger.root.level = Level.ALL;
+    } else {
+      Logger.root.level = Level.INFO;
+    }
   }
 
-  static void success(String message) {
-    logger.stdout('${pens['success']('[SUCCESS]')} $message');
-  }
+  static void printLog(LogRecord record) {
+    final level = record.level;
+    var buffer = StringBuffer();
 
-  static void trace(String message) {
-    logger.trace('${pens['info']('[TRACE]')} $message');
+    var formattedLevel;
+    if (verbose) {
+      formattedLevel = '[$level: ${record.loggerName}]';
+    } else {
+      formattedLevel = '[$level]';
+    }
+    if (canUseColor) {
+      AnsiCode color;
+      if (level < Level.WARNING) {
+        color = cyan;
+      } else if (level < Level.SEVERE) {
+        color = yellow;
+      } else {
+        color = red;
+      }
+      formattedLevel = color.wrap(formattedLevel);
+    }
+
+    buffer.write(formattedLevel);
+
+    if (verbose) {
+      buffer.writeCharCode(32); // Empty space
+      buffer.write(record.time);
+    }
+
+    buffer.writeCharCode(32);
+    buffer.write(record.message);
+
+    if (record.error != null) {
+      buffer.writeCharCode(32);
+      buffer.write(record.error);
+    }
+
+		stdout.writeln(buffer);
   }
 }
