@@ -2,12 +2,20 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:args/command_runner.dart';
-import 'package:ngdart/src/templates/new_project.dart';
-import 'package:ngdart/util/ansipen.dart';
-import 'package:ngdart/util/conversion.dart';
-import 'package:ngdart/util/logger.dart';
+import 'package:charcode/charcode.dart';
+import 'package:grinder/grinder_sdk.dart';
+import 'package:grinder/grinder_tools.dart';
+import 'package:io/ansi.dart';
+import 'package:logging/logging.dart';
+import 'package:interact/interact.dart';
+
+import '../templates/new_project.dart';
+import '../../util/logger.dart';
+import '../../util/conversion.dart';
 
 class CreateCommand extends Command<int> {
+  final logger = Logger('create');
+
   @override
   String get description => 'Create a new project.';
 
@@ -38,30 +46,62 @@ class CreateCommand extends Command<int> {
   }
 
   CreateCommand() {
-    argParser.addFlag('force', abbr: 'f', negatable: false, help: 'Force generation into the target directory, overwriting files when needed.');
-		argParser.addFlag('pub', negatable: true, defaultsTo: true, help: 'Whether to run \'pub get\' after the project has been created.');
-    argParser.addOption('path', abbr: 'p', defaultsTo: '.', help: 'Specify the location to create the project.');
+    argParser.addFlag('force',
+        abbr: 'f',
+        negatable: false,
+        help:
+            'Force generation into the target directory, overwriting files when needed.');
+    argParser.addFlag('pub',
+        negatable: true,
+        defaultsTo: true,
+        help: 'Whether to run \'pub get\' after the project has been created.');
+    argParser.addOption('path',
+        abbr: 'p',
+        defaultsTo: '.',
+        help: 'Specify the location to create the project.');
   }
 
   @override
   FutureOr<int> run() async {
-    // print('projectName: ${readArg('aha!')}');
-    // print('force: ${argResults!['force']}');
-    // print('dir: ${argResults?['path']}');
     var projectName = normalizeProjectName(readArg('Requires a project name'));
-    // var progress = AppLogger.logger.progress('Creating project');
-    print(progressLog + 'Creating project...');
-    await CreateNewProject(argResults, projectName);
-    // progress.finish(showTiming: true);
-    AppLogger.success('Created project \"$projectName\"');
-    // print(successLog + 'Created project \"$projectName\"');
 
-		if (argResults['pub'] == true) {
-			var progress = AppLogger.logger.progress('\n' + progressLog + 'Running \'pub get\' in the project folder');
-			await Process.run('pub', ['get'], runInShell: true, workingDirectory: '$projectName/').onError((error, stackTrace) => throw Exception(error));
-			progress.finish(showTiming: true);
-			AppLogger.success('Completed!');
-		}
+    if (CliLogger.verbose == true) {
+      logger.info('Creating project...');
+      await CreateNewProject(argResults, projectName);
+      logger.info('Created project \"$projectName\"');
+    } else {
+      final create = Spinner(
+        icon: green.wrap('[${String.fromCharCode($radic)}]'),
+        leftPrompt: (done) => '',
+        rightPrompt: (done) =>
+            done ? 'Created project \"$projectName\"' : 'Creating project...',
+      ).interact();
+      await CreateNewProject(argResults, projectName);
+      await Future.delayed(Duration(seconds: 1));
+      create.done();
+    }
+
+    if (argResults['pub'] == true) {
+      final pub = Spinner(
+        icon: green.wrap('[${String.fromCharCode($radic)}]'),
+        leftPrompt: (done) => '',
+        rightPrompt: (done) =>
+            done ? 'Done!' : 'Running \'pub get\' in the project folder...',
+      );
+			var state = pub.interact();
+      // Pub.get(workingDirectory: '$projectName/', runOptions: RunOptions());
+      var result = await Process.run(
+        'pub',
+        ['get'],
+        runInShell: true,
+        workingDirectory: '$projectName/',
+      );
+      if (result.stderr != null && result.stderr.toString().isNotEmpty) {
+        throw Exception(result.stderr);
+      }
+      state.done();
+    }
+
     return 0;
   }
 }

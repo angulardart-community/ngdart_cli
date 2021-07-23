@@ -29,7 +29,7 @@ class NgdartCommandRunner extends CommandRunner<int> {
       print(packageVersion);
       return 0;
     }
-    AppLogger.isVerbose = topLevelResults['verbose'];
+		CliLogger.setVerbosity(topLevelResults['verbose']);
     // In the case of `help`, `null` is returned. Treat that as success.
     return await super.runCommand(topLevelResults) ?? 0;
   }

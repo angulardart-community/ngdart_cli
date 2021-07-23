@@ -114,7 +114,7 @@ packages:
     source: hosted
     version: "7.1.0"
   charcode:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: charcode
       url: "https://pub.dartlang.org"
@@ -128,7 +128,7 @@ packages:
     source: hosted
     version: "2.0.1"
   cli_util:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: cli_util
       url: "https://pub.dartlang.org"
@@ -260,6 +260,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
+  grinder:
+    dependency: "direct main"
+    description:
+      name: grinder
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.9.0"
   http:
     dependency: transitive
     description:
@@ -296,7 +303,7 @@ packages:
     source: hosted
     version: "0.17.0"
   io:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: io
       url: "https://pub.dartlang.org"

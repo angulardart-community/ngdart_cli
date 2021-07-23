@@ -3,15 +3,16 @@ import 'dart:convert';
 
 import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
-import 'package:ngdart/util/logger.dart';
+import 'package:logging/logging.dart';
 import 'package:path/path.dart' as p;
 
-import 'package:ngdart/util/conversion.dart';
+import '../../util/conversion.dart';
 import '../../constants.dart';
 
 part 'new_project.g.dart';
 
 Future<void> CreateNewProject(ArgResults argResults, String name) async {
+	final logger = Logger('create_from_template');
   final projectDirUrl = p.normalize(argResults['path'] + '/' + name);
 
   if (!argResults['force']) {
@@ -43,6 +44,6 @@ Future<void> CreateNewProject(ArgResults argResults, String name) async {
       final decoded = base64.decode(raw);
       await File(path).writeAsBytes(decoded);
     }
-    AppLogger.trace('created file at $path');
+		logger.fine('Created file at $path');
   }
 }
