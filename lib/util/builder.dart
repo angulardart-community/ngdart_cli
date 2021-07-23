@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:math' as math;
 
 import 'package:build/build.dart';
+import 'package:dart_style/dart_style.dart' show DartFormatter;
 import 'package:glob/glob.dart';
 import 'package:path/path.dart' as p;
 
@@ -45,13 +46,15 @@ class _TemplateBuilder implements Builder {
     }).join(',');
 
     await buildStep.writeAsString(
-        targetFile, '''
+      targetFile,
+      DartFormatter().format('''
 // Generated code. Do not modify by hand (unless you know what you're doing).
 
 part of '$name.dart';
 
 const _data = <String>[$items];
-''');
+'''),
+    );
   }
 
   @override
