@@ -3,8 +3,6 @@ import 'dart:io';
 
 import 'package:args/command_runner.dart';
 import 'package:charcode/charcode.dart';
-import 'package:grinder/grinder_sdk.dart';
-import 'package:grinder/grinder_tools.dart';
 import 'package:io/ansi.dart';
 import 'package:logging/logging.dart';
 import 'package:interact/interact.dart';
@@ -85,11 +83,10 @@ class CreateCommand extends Command<int> {
       final pub = Spinner(
         icon: green.wrap('[${String.fromCharCode($radic)}]'),
         leftPrompt: (done) => '',
-        rightPrompt: (done) =>
-            done ? 'Done!' : 'Running \'pub get\' in the project folder...',
-      );
-			var state = pub.interact();
-      // Pub.get(workingDirectory: '$projectName/', runOptions: RunOptions());
+        rightPrompt: (done) => done
+            ? 'Fetched dependencies!'
+            : 'Running \'pub get\' in the project folder...',
+      ).interact();
       var result = await Process.run(
         'pub',
         ['get'],
@@ -99,7 +96,7 @@ class CreateCommand extends Command<int> {
       if (result.stderr != null && result.stderr.toString().isNotEmpty) {
         throw Exception(result.stderr);
       }
-      state.done();
+      pub.done();
     }
 
     return 0;

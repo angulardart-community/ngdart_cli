@@ -16,7 +16,6 @@ dependencies:
   charcode: ^1.3.1
   dart_style: ^2.0.3
   glob: ^2.0.1
-  grinder: ^0.9.0
   interact: ^2.0.0
   io: ^0.3.5
   path: ^1.8.0
