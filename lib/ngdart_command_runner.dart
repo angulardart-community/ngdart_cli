@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
+import 'package:io/io.dart';
 
 import 'constants.dart';
 import 'util/logger.dart';
@@ -12,7 +13,7 @@ import 'src/commands/serve.dart';
 
 Future<int> run(List<String> args) => NgdartCommandRunner().run(args);
 
-class NgdartCommandRunner extends CommandRunner<int> {
+class NgdartCommandRunner extends CommandRunner {
   NgdartCommandRunner() : super(appName, 'A command-line tool for creating and managing AngularDart projects.') {
     argParser.addFlag('version', abbr: 'v',
         negatable: false, help: 'Prints the version of ngdart.');
@@ -27,10 +28,10 @@ class NgdartCommandRunner extends CommandRunner<int> {
   Future<int> runCommand(ArgResults topLevelResults) async {
     if (topLevelResults['version'] as bool) {
       print(packageVersion);
-      return 0;
+      return ExitCode.success.code;
     }
 		CliLogger.setVerbosity(topLevelResults['verbose']);
     // In the case of `help`, `null` is returned. Treat that as success.
-    return await super.runCommand(topLevelResults) ?? 0;
+    return await super.runCommand(topLevelResults) ?? ExitCode.success.code;
   }
 }
