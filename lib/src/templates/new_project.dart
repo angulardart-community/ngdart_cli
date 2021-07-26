@@ -6,8 +6,7 @@ import 'package:args/command_runner.dart';
 import 'package:logging/logging.dart';
 import 'package:path/path.dart' as p;
 
-import '../../util/conversion.dart';
-import '../../constants.dart';
+import '../constants.dart';
 
 part 'new_project.g.dart';
 
@@ -46,4 +45,20 @@ Future<void> CreateNewProject(ArgResults argResults, String name) async {
     }
 		logger.fine('Created file at $path');
   }
+}
+
+String substituteVars(String str, Map<String, String> vars) {
+  if (vars.keys.any((element) => element.contains(nonValidSubstituteRegExp))) {
+    throw ArgumentError('vars.keys can only contain letters.');
+  }
+
+  return str.replaceAllMapped(substituteRegExp, (match) {
+    final item = vars[match[1]];
+
+    if (item == null) {
+      return match[0];
+    } else {
+      return item;
+    }
+  });
 }

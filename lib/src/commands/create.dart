@@ -4,12 +4,12 @@ import 'dart:io';
 import 'package:args/command_runner.dart';
 import 'package:charcode/charcode.dart';
 import 'package:io/ansi.dart';
+import 'package:io/io.dart';
 import 'package:logging/logging.dart';
 import 'package:interact/interact.dart';
 
 import '../templates/new_project.dart';
-import '../../util/logger.dart';
-import '../../util/conversion.dart';
+import '../util/logger.dart';
 
 class CreateCommand extends Command<int> {
   final logger = Logger('create');
@@ -43,6 +43,14 @@ class CreateCommand extends Command<int> {
     return arg;
   }
 
+	bool isValidProjectName(String name) {
+		if (name.contains(r'[a-z0-9_]')) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
   CreateCommand() {
     argParser.addFlag('force',
         abbr: 'f',
@@ -61,7 +69,10 @@ class CreateCommand extends Command<int> {
 
   @override
   FutureOr<int> run() async {
-    var projectName = normalizeProjectName(readArg('Requires a project name'));
+    var projectName = argResults.rest.first;
+		if (isValidProjectName(projectName)) {
+			return ExitCode.data.code;
+		}
 
     if (CliLogger.verbose == true) {
       logger.info('Creating project...');
@@ -79,26 +90,32 @@ class CreateCommand extends Command<int> {
       create.done();
     }
 
-    if (argResults['pub'] == true) {
-      final pub = Spinner(
-        icon: green.wrap('[${String.fromCharCode($radic)}]'),
-        leftPrompt: (done) => '',
-        rightPrompt: (done) => done
-            ? 'Fetched dependencies!'
-            : 'Running \'pub get\' in the project folder...',
-      ).interact();
-      var result = await Process.run(
-        'pub',
-        ['get'],
-        runInShell: true,
-        workingDirectory: '$projectName/',
-      );
-      if (result.stderr != null && result.stderr.toString().isNotEmpty) {
-        throw Exception(result.stderr);
+    try {
+      if (argResults['pub'] == true) {
+        final pub = Spinner(
+          icon: green.wrap('[${String.fromCharCode($radic)}]'),
+          leftPrompt: (done) => '',
+          rightPrompt: (done) => done
+              ? 'Fetched dependencies!'
+              : 'Running \'pub get\' in the project folder...',
+        ).interact();
+        var result = await Process.run(
+          'pub',
+          ['get'],
+          runInShell: true,
+          workingDirectory: '$projectName/',
+        );
+        if (result.stderr != null && result.stderr.toString().isNotEmpty) {
+      				logger.severe(result.stderr);
+      				return ExitCode.ioError.code;
+        }
+        pub.done();
       }
-      pub.done();
+    } on Exception catch (e) {
+			logger.severe(e);
+			return 1;
     }
 
-    return 0;
+    return ExitCode.success.code;
   }
 }

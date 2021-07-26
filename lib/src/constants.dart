@@ -1,4 +1,4 @@
-export './src/version.dart';
+export 'version.dart';
 
 String appName = 'ngdart';
 

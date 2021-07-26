@@ -6,10 +6,10 @@ import 'package:io/io.dart';
 
 import 'constants.dart';
 import 'util/logger.dart';
-import 'src/commands/create.dart';
-import 'src/commands/clean.dart';
-import 'src/commands/build.dart';
-import 'src/commands/serve.dart';
+import 'commands/create.dart';
+import 'commands/clean.dart';
+import 'commands/build.dart';
+import 'commands/serve.dart';
 
 Future<int> run(List<String> args) => NgdartCommandRunner().run(args);
 
