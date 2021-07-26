@@ -25,12 +25,12 @@ class CreateCommand extends Command<int> {
       'ngdart create <project_name> [--path <project/path>] [--force]';
 
   // Reads argument for current command.
-  String readArg(String errorMessage) {
+  String readArg() {
     var args = argResults?.rest;
 
     if (args == null || args.isEmpty) {
       // Usage is provided by command runner.
-      throw UsageException(errorMessage, '');
+      throw UsageException('You must provide a project name.', '');
     }
 
     var arg = args.first;
@@ -43,13 +43,13 @@ class CreateCommand extends Command<int> {
     return arg;
   }
 
-	bool isValidProjectName(String name) {
-		if (name.contains(r'[a-z0-9_]')) {
-			return true;
-		} else {
-			return false;
-		}
-	}
+  bool isValidProjectName(String name) {
+    if (name.contains(RegExp(r'[a-z0-9_]'))) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   CreateCommand() {
     argParser.addFlag('force',
@@ -70,9 +70,12 @@ class CreateCommand extends Command<int> {
   @override
   FutureOr<int> run() async {
     var projectName = argResults.rest.first;
-		if (isValidProjectName(projectName)) {
-			return ExitCode.data.code;
-		}
+    if (!isValidProjectName(projectName)) {
+      logger.severe('\"$projectName\" is not a valid Dart project name.\n');
+      stdout.writeln(
+          'See https://dart.dev/tools/pub/pubspec#name for more information.');
+      return ExitCode.data.code;
+    }
 
     if (CliLogger.verbose == true) {
       logger.info('Creating project...');
@@ -97,7 +100,7 @@ class CreateCommand extends Command<int> {
           leftPrompt: (done) => '',
           rightPrompt: (done) => done
               ? 'Fetched dependencies!'
-              : 'Running \'pub get\' in the project folder...',
+              : 'Running \"pub get\" in the project folder...',
         ).interact();
         var result = await Process.run(
           'pub',
@@ -106,14 +109,14 @@ class CreateCommand extends Command<int> {
           workingDirectory: '$projectName/',
         );
         if (result.stderr != null && result.stderr.toString().isNotEmpty) {
-      				logger.severe(result.stderr);
-      				return ExitCode.ioError.code;
+          logger.severe(result.stderr);
+          return ExitCode.ioError.code;
         }
         pub.done();
       }
     } on Exception catch (e) {
-			logger.severe(e);
-			return 1;
+      logger.severe(e);
+      return 1;
     }
 
     return ExitCode.success.code;
