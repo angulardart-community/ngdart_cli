@@ -11,7 +11,7 @@ import 'src/commands/clean.dart';
 import 'src/commands/build.dart';
 import 'src/commands/serve.dart';
 
-Future<int> run(List<String> args) => NgdartCommandRunner().run(args);
+Future<int?> run(List<String> args) => NgdartCommandRunner().run(args).then((value) => value as int?);
 
 class NgdartCommandRunner extends CommandRunner {
   NgdartCommandRunner() : super(appName, 'A command-line tool for creating and managing AngularDart projects.') {
@@ -32,6 +32,6 @@ class NgdartCommandRunner extends CommandRunner {
     }
 		CliLogger.setVerbosity(topLevelResults['verbose']);
     // In the case of `help`, `null` is returned. Treat that as success.
-    return await super.runCommand(topLevelResults) ?? ExitCode.success.code;
+    return await (super.runCommand(topLevelResults) as FutureOr<int>?) ?? ExitCode.success.code;
   }
 }

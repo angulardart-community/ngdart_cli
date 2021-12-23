@@ -34,7 +34,7 @@ class CleanCommand extends Command<int> {
       try {
         if (await buildDir.exists()) {
           final build = Spinner(
-            icon: green.wrap('[${String.fromCharCode($radic)}]'),
+            icon: green.wrap('[${String.fromCharCode($radic)}]')!,
             rightPrompt: (done) => 'Deleting build...',
           ).interact();
           await buildDir.delete(recursive: true);
@@ -42,7 +42,7 @@ class CleanCommand extends Command<int> {
         }
         if (await toolDir.exists()) {
           final tool = Spinner(
-            icon: green.wrap('[${String.fromCharCode($radic)}]'),
+            icon: green.wrap('[${String.fromCharCode($radic)}]')!,
             rightPrompt: (done) => 'Deleting .dart_tools...',
           ).interact();
           await toolDir.delete(recursive: true);
@@ -50,7 +50,7 @@ class CleanCommand extends Command<int> {
         }
         if (await packages.exists()) {
           final _packages = Spinner(
-            icon: green.wrap('[${String.fromCharCode($radic)}]'),
+            icon: green.wrap('[${String.fromCharCode($radic)}]')!,
             rightPrompt: (done) => 'Deleting .packages...',
           ).interact();
           await packages.delete();

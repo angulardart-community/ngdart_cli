@@ -65,23 +65,23 @@ class CreateCommand extends Command<int> {
 
     if (CliLogger.verbose == true) {
       logger.info('Creating project...');
-      await CreateNewProject(argResults, projectName);
+      await CreateNewProject(argResults!, projectName);
       logger.info('Created project \"$projectName\"');
     } else {
       final create = Spinner(
-        icon: green.wrap('[${String.fromCharCode($radic)}]'),
+        icon: green.wrap('[${String.fromCharCode($radic)}]')!,
         leftPrompt: (done) => '',
         rightPrompt: (done) =>
             done ? 'Created project \"$projectName\"' : 'Creating project...',
       ).interact();
-      await CreateNewProject(argResults, projectName);
+      await CreateNewProject(argResults!, projectName);
       await Future.delayed(Duration(seconds: 1));
       create.done();
     }
 
-    if (argResults['pub'] == true) {
+    if (argResults!['pub'] == true) {
       final pub = Spinner(
-        icon: green.wrap('[${String.fromCharCode($radic)}]'),
+        icon: green.wrap('[${String.fromCharCode($radic)}]')!,
         leftPrompt: (done) => '',
         rightPrompt: (done) => done
             ? 'Fetched dependencies!'

@@ -18,10 +18,10 @@ String substituteVars(String str, Map<String, String> vars) {
   }
 
   return str.replaceAllMapped(substituteRegExp, (match) {
-    final item = vars[match[1]];
+    final item = vars[match[1]!];
 
     if (item == null) {
-      return match[0];
+      return match[0]!;
     } else {
       return item;
     }
