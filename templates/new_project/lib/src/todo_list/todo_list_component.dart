@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:angular/angular.dart';
-import 'package:angular_components/angular_components.dart';
+import 'package:ngcomponents/angular_components.dart';
 
 import 'todo_list_service.dart';
 
@@ -14,6 +14,7 @@ import 'todo_list_service.dart';
     MaterialFabComponent,
     MaterialIconComponent,
     materialInputDirectives,
+    MaterialTooltipDirective,
     NgFor,
     NgIf,
   ],
@@ -28,7 +29,7 @@ class TodoListComponent implements OnInit {
   TodoListComponent(this.todoListService);
 
   @override
-  Future<Null> ngOnInit() async {
+  Future<void> ngOnInit() async {
     items = await todoListService.getTodoList();
   }
 
