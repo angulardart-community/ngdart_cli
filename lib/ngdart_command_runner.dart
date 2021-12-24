@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
@@ -25,7 +26,7 @@ class NgdartCommandRunner extends CommandRunner<int> {
   @override
   Future<int> runCommand(ArgResults topLevelResults) async {
     if (topLevelResults['version'] as bool) {
-      print(packageVersion);
+      stdout.writeln(packageVersion);
       return 0;
     }
     AppLogger.isVerbose = topLevelResults['verbose'] as bool;

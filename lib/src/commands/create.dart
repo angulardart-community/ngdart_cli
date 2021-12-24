@@ -2,10 +2,10 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:args/command_runner.dart';
-import 'package:ngdart/src/templates/new_project.dart';
-import 'package:ngdart/util/ansipen.dart';
-import 'package:ngdart/util/conversion.dart';
-import 'package:ngdart/util/logger.dart';
+import '../templates/new_project.dart';
+import '../../util/ansipen.dart';
+import '../../util/conversion.dart';
+import '../../util/logger.dart';
 
 class CreateCommand extends Command<int> {
   @override
@@ -27,7 +27,7 @@ class CreateCommand extends Command<int> {
       throw UsageException(errorMessage, '');
     }
 
-    var arg = args.first;
+    final arg = args.first;
     args = args.skip(1).toList();
 
     if (args.isNotEmpty) {
@@ -38,19 +38,24 @@ class CreateCommand extends Command<int> {
   }
 
   CreateCommand() {
-    argParser.addFlag('force',
-        abbr: 'f',
-        negatable: false,
-        help:
-            'Force generation into the target directory, overwriting files when needed.');
-    argParser.addFlag('pub',
-        negatable: true,
-        defaultsTo: true,
-        help: 'Whether to run \'pub get\' after the project has been created.');
-    argParser.addOption('path',
-        abbr: 'p',
-        defaultsTo: '.',
-        help: 'Specify the location to create the project.');
+    argParser.addFlag(
+      'force',
+      abbr: 'f',
+      negatable: false,
+      help:
+          'Force generation into the target directory, overwriting files when needed.',
+    );
+    argParser.addFlag(
+      'pub',
+      defaultsTo: true,
+      help: "Whether to run 'pub get' after the project has been created.",
+    );
+    argParser.addOption(
+      'path',
+      abbr: 'p',
+      defaultsTo: '.',
+      help: 'Specify the location to create the project.',
+    );
   }
 
   @override
@@ -59,20 +64,25 @@ class CreateCommand extends Command<int> {
     // print('projectName: ${readArg('aha!')}');
     // print('force: ${argResults!['force']}');
     // print('dir: ${argResults?['path']}');
-    var projectName = normalizeProjectName(readArg('Requires a project name'));
+    final projectName =
+        normalizeProjectName(readArg('Requires a project name'));
     // var progress = AppLogger.logger.progress('Creating project');
-    print(progressLog + 'Creating project...');
+    stdout.writeln('${progressLog}Creating project...');
     await CreateNewProject(argResults!, projectName);
     // progress.finish(showTiming: true);
     AppLogger.success('Created project \"$projectName\"');
     // print(successLog + 'Created project \"$projectName\"');
 
     if (argResults?['pub'] == true) {
-      var progress = AppLogger.logger.progress(
-          '\n' + progressLog + 'Running \'pub get\' in the project folder');
-      await Process.run('pub', ['get'],
-              runInShell: true, workingDirectory: '$projectName/')
-          .onError((error, stackTrace) => throw Exception(error));
+      final progress = AppLogger.logger.progress(
+        "\n${progressLog}Running 'pub get' in the project folder",
+      );
+      await Process.run(
+        'pub',
+        ['get'],
+        runInShell: true,
+        workingDirectory: '$projectName/',
+      ).onError((error, stackTrace) => throw Exception(error));
       progress.finish(showTiming: true);
       AppLogger.success('Completed!');
     }
