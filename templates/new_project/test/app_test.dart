@@ -5,7 +5,7 @@ import 'package:__projectName__/app_component.dart';
 import 'package:__projectName__/app_component.template.dart' as ng;
 
 void main() {
-  final testBed =
+  late final testBed =
       NgTestBed.forComponent<AppComponent>(ng.AppComponentNgFactory);
   NgTestFixture<AppComponent> fixture;
 

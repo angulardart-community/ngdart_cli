@@ -18,12 +18,12 @@ class NgdartCommandRunner extends CommandRunner<int> {
         ) {
     argParser.addFlag(
       'version',
-      abbr: 'v',
       negatable: false,
       help: 'Prints the version of ngdart.',
     );
     argParser.addFlag(
       'verbose',
+      abbr: 'v',
       negatable: false,
       help: 'Show additional command output',
     );

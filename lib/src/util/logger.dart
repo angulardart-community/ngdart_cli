@@ -1,7 +1,7 @@
 import 'package:ansicolor/ansicolor.dart';
 import 'package:cli_util/cli_logging.dart';
 
-late final Logger logger;
+Logger logger = Logger.standard(ansi: Ansi(true));
 
 void error(String message) {
 	final AnsiPen pen = AnsiPen()..xterm(160);
@@ -20,5 +20,6 @@ void success(String message) {
 
 void trace(String message) {
 	final AnsiPen pen = AnsiPen()..xterm(045);
-	logger.trace('${pen('[Trace]')} $message');
+	// logger.trace('${pen('[Trace]')} $message');
+	logger.trace(message);
 }
