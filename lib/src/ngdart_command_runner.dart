@@ -9,8 +9,6 @@ import 'commands/create.dart';
 import 'constants.dart';
 import 'util/logger.dart';
 
-Future<int?> run(List<String> args) => NgdartCommandRunner().run(args);
-
 class NgdartCommandRunner extends CommandRunner<int> {
   NgdartCommandRunner()
       : super(appName,

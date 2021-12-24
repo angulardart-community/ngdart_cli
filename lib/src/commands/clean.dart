@@ -26,7 +26,7 @@ class CleanCommand extends Command<int> {
 
     try {
       if (!(await pubspec.exists())) {
-        throw 'pubspec.yaml not found!';
+        throw Exception('pubspec.yaml not found!');
       }
       if (await buildDir.exists()) {
         final progress = logger.progress('${progressLog}Deleting build');

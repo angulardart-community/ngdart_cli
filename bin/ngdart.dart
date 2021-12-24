@@ -14,6 +14,6 @@ Future<void> main(List<String> args) async {
     exit(64);
   } catch (e) {
     stderr.writeln('$errorLog$e');
-    exit(exitCode);
+    exit(1);
   }
 }

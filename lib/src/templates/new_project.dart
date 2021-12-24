@@ -16,9 +16,11 @@ Future<void> createNewProject(ArgResults argResults, String name) async {
 
   if (!(argResults['force'] as bool)) {
     if (await Directory(projectDirUrl).exists()) {
-      throw UsageException(
-        'Project directory not empty.',
-        'Create a new project directory, or use --force to force generation into the target directory',
+      throw Exception(
+        '''
+Project directory not empty.
+
+Create a new project directory, or use --force to force generation into the target directory.''',
       );
     }
   }
