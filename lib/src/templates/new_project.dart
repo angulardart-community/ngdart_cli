@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:args/args.dart';
-import 'package:args/command_runner.dart';
 import 'package:path/path.dart' as p;
 
 import '../constants.dart';
@@ -45,6 +44,6 @@ Create a new project directory, or use --force to force generation into the targ
       final decoded = base64.decode(raw);
       await File(path).writeAsBytes(decoded);
     }
-    AppLogger.trace('created file at $path');
+    trace('created file at $path');
   }
 }

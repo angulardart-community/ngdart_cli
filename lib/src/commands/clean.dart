@@ -3,8 +3,7 @@ import 'dart:io';
 
 import 'package:args/command_runner.dart';
 import 'package:cli_util/cli_logging.dart';
-
-import '../util/ansipen.dart';
+import 'package:ngdart/src/util/logger.dart';
 
 class CleanCommand extends Command<int> {
   @override
@@ -29,24 +28,24 @@ class CleanCommand extends Command<int> {
         throw Exception('pubspec.yaml not found!');
       }
       if (await buildDir.exists()) {
-        final progress = logger.progress('${progressLog}Deleting build');
+        final progress = logger.progress('Deleting build');
         await buildDir.delete(recursive: true);
         progress.finish(showTiming: true);
       }
       if (await toolDir.exists()) {
-        final progress = logger.progress('${progressLog}Deleting .dart_tools');
+        final progress = logger.progress('Deleting .dart_tools');
         await toolDir.delete(recursive: true);
         progress.finish(showTiming: true);
       }
       if (await packages.exists()) {
-        final progress = logger.progress('${progressLog}Deleting .packages');
+        final progress = logger.progress('Deleting .packages');
         await packages.delete();
         progress.finish(showTiming: true);
       }
     } catch (e) {
       throw Exception(e);
     }
-    stdout.writeln('${successLog}All clean!');
+    success('All clean!');
 
     return 0;
   }

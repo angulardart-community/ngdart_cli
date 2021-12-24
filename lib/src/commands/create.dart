@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:args/command_runner.dart';
 
 import '../templates/new_project.dart';
-import '../util/ansipen.dart';
 import '../util/conversion.dart';
 import '../util/logger.dart';
 
@@ -25,14 +24,17 @@ class CreateCommand extends Command<int> {
 
     if (args == null || args.isEmpty) {
       // Usage is provided by command runner.
-      throw UsageException(errorMessage, '');
+      throw UsageException(errorMessage, usage);
     }
 
     final arg = args.first;
     args = args.skip(1).toList();
 
     if (args.isNotEmpty) {
-      throw UsageException('Unexpected argument $args', '');
+      throw UsageException(
+        'Unexpected ${args.length > 1 ? 'arguments' : 'argument'} $args',
+        usage,
+      );
     }
 
     return arg;
@@ -68,15 +70,15 @@ class CreateCommand extends Command<int> {
     final projectName =
         normalizeProjectName(readArg('Requires a project name'));
     // var progress = AppLogger.logger.progress('Creating project');
-    stdout.writeln('${progressLog}Creating project...');
+		info('Creating project...');
     await createNewProject(argResults!, projectName);
     // progress.finish(showTiming: true);
-    AppLogger.success('Created project "$projectName"');
+    success('Created project "$projectName"');
     // print(successLog + 'Created project \"$projectName\"');
 
     if (argResults?['pub'] == true) {
-      final progress = AppLogger.logger.progress(
-        "\n${progressLog}Running 'pub get' in the project folder",
+      final progress = logger.progress(
+        "\nRunning 'pub get' in the project folder",
       );
       await Process.run(
         'pub',
@@ -85,7 +87,7 @@ class CreateCommand extends Command<int> {
         workingDirectory: '$projectName/',
       ).onError((error, stackTrace) => throw Exception(error));
       progress.finish(showTiming: true);
-      AppLogger.success('Completed!');
+      success('Completed!');
     }
     return 0;
   }

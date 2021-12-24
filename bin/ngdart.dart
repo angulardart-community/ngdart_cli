@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:args/command_runner.dart';
 import 'package:ngdart/src/ngdart_command_runner.dart';
-import 'package:ngdart/src/util/ansipen.dart';
+import 'package:ngdart/src/util/logger.dart';
 
 Future<void> main(List<String> args) async {
   final runner = NgdartCommandRunner();
@@ -10,10 +10,10 @@ Future<void> main(List<String> args) async {
   try {
     await runner.run(args);
   } on UsageException catch (e) {
-    stderr.writeln('$errorLog$e');
+		error('$e');
     exit(64);
   } catch (e) {
-    stderr.writeln('$errorLog$e');
+		error('$e');
     exit(1);
   }
 }
