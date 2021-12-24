@@ -4,9 +4,9 @@ import 'dart:io';
 import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
 
+import 'commands/clean.dart';
+import 'commands/create.dart';
 import 'constants.dart';
-import 'src/commands/clean.dart';
-import 'src/commands/create.dart';
 import 'util/logger.dart';
 
 Future<int?> run(List<String> args) => NgdartCommandRunner().run(args);

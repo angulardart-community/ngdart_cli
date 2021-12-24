@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:args/command_runner.dart';
 import 'package:cli_util/cli_logging.dart';
 
-import '../../util/ansipen.dart';
+import '../util/ansipen.dart';
 
 class CleanCommand extends Command<int> {
   @override

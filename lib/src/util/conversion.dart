@@ -6,7 +6,7 @@ String normalizeProjectName(String name) {
 
   // Remove any extension (like .dart).
   if (name.contains('.')) {
-    name = name.substring(0, name.indexOf('.'));
+    return name.substring(0, name.indexOf('.'));
   }
 
   return name;

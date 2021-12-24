@@ -5,21 +5,21 @@ import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
 import 'package:path/path.dart' as p;
 
-import '../../constants.dart';
-import '../../util/conversion.dart';
-import '../../util/logger.dart';
+import '../constants.dart';
+import '../util/conversion.dart';
+import '../util/logger.dart';
 
 part 'new_project.g.dart';
 
-Future<void> CreateNewProject(ArgResults argResults, String name) async {
+Future<void> createNewProject(ArgResults argResults, String name) async {
   final projectDirUrl = p.normalize('${argResults['path'] as String}/$name');
 
   if (!(argResults['force'] as bool)) {
     if (await Directory(projectDirUrl).exists()) {
       throw UsageException(
-          'Project directory not empty.\n\nCreate a new project '
-              'directory, or use --force to force generation into the target directory.',
-          '');
+        'Project directory not empty.',
+        'Create a new project directory, or use --force to force generation into the target directory',
+      );
     }
   }
 

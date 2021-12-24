@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:args/command_runner.dart';
-import 'package:ngdart/ngdart_command_runner.dart';
-import 'package:ngdart/util/ansipen.dart';
+import 'package:ngdart/src/ngdart_command_runner.dart';
+import 'package:ngdart/src/util/ansipen.dart';
 
 Future<void> main(List<String> args) async {
   final runner = NgdartCommandRunner();

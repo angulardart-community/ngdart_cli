@@ -14,7 +14,7 @@ targets:
 
 builders:
   ngdart:
-    import: "lib/util/builder.dart"
+    import: "lib/src/util/builder.dart"
     builder_factories: ["buildTemplate"]
     build_extensions: {".dart": [".g.dart"]}
     build_to: source

@@ -3,9 +3,9 @@ import 'dart:io';
 
 import 'package:args/command_runner.dart';
 import '../templates/new_project.dart';
-import '../../util/ansipen.dart';
-import '../../util/conversion.dart';
-import '../../util/logger.dart';
+import '../util/ansipen.dart';
+import '../util/conversion.dart';
+import '../util/logger.dart';
 
 class CreateCommand extends Command<int> {
   @override
@@ -68,9 +68,9 @@ class CreateCommand extends Command<int> {
         normalizeProjectName(readArg('Requires a project name'));
     // var progress = AppLogger.logger.progress('Creating project');
     stdout.writeln('${progressLog}Creating project...');
-    await CreateNewProject(argResults!, projectName);
+    await createNewProject(argResults!, projectName);
     // progress.finish(showTiming: true);
-    AppLogger.success('Created project \"$projectName\"');
+    AppLogger.success('Created project "$projectName"');
     // print(successLog + 'Created project \"$projectName\"');
 
     if (argResults?['pub'] == true) {

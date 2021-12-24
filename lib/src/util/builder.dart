@@ -8,8 +8,9 @@ import 'package:path/path.dart' as p;
 
 const List<String> _allowedDotFiles = <String>['.gitignore'];
 final RegExp _binaryFileTypes = RegExp(
-    r'\.(jpe?g|png|gif|ico|svg|ttf|eot|woff|woff2)$',
-    caseSensitive: false);
+  r'\.(jpe?g|png|gif|ico|svg|ttf|eot|woff|woff2)$',
+  caseSensitive: false,
+);
 
 Builder buildTemplate([BuilderOptions? options]) => _TemplateBuilder();
 
@@ -44,13 +45,16 @@ class _TemplateBuilder implements Builder {
       return "'$item'";
     }).join(',');
 
-    await buildStep.writeAsString(targetFile, '''
+    await buildStep.writeAsString(
+      targetFile,
+      '''
 // Generated code. Do not modify by hand (unless you know what you're doing).
 
 part of '$name.dart';
 
 const _data = <String>[$items];
-''');
+''',
+    );
   }
 
   @override
@@ -62,7 +66,7 @@ const _data = <String>[$items];
 
 // Copied from stagehand
 Stream<String> _getLines(List<AssetId> ids, AssetReader reader) async* {
-  for (var id in ids) {
+  for (final id in ids) {
     yield p.url.joinAll(id.pathSegments.skip(2));
     yield _binaryFileTypes.hasMatch(p.basename(id.path)) ? 'binary' : 'text';
     yield _base64encode(await reader.readAsBytes(id));
