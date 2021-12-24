@@ -12,9 +12,9 @@ import '../../constants.dart';
 part 'new_project.g.dart';
 
 Future<void> CreateNewProject(ArgResults argResults, String name) async {
-  final projectDirUrl = p.normalize(argResults['path'] + '/' + name);
+  final projectDirUrl = p.normalize('${argResults['path'] as String}/$name');
 
-  if (!argResults['force']) {
+  if (!(argResults['force'] as bool)) {
     if (await Directory(projectDirUrl).exists()) {
       throw UsageException(
           'Project directory not empty.\n\nCreate a new project '
@@ -24,7 +24,7 @@ Future<void> CreateNewProject(ArgResults argResults, String name) async {
   }
 
   for (var i = 0; i < _data.length; i += 3) {
-    final path = p.normalize(projectDirUrl + '/' + _data[i]);
+    final path = p.normalize('$projectDirUrl/${_data[i]}');
     final type = _data[i + 1];
     final raw = _data[i + 2].replaceAll(whiteSpace, '');
 
@@ -36,7 +36,7 @@ Future<void> CreateNewProject(ArgResults argResults, String name) async {
 
     // Treat text files (.dart) and binary files (.png) differently
     if (type == 'text') {
-      final decoded = Utf8Decoder().convert(base64.decode(raw));
+      final decoded = const Utf8Decoder().convert(base64.decode(raw));
       await File(path)
           .writeAsString(substituteVars(decoded, {'projectName': name}));
     } else {

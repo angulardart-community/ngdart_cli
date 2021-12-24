@@ -2,23 +2,22 @@ import 'dart:async';
 
 import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
-import 'package:ngdart/src/commands/serve.dart';
 
 import 'constants.dart';
-import 'util/logger.dart';
-import 'src/commands/create.dart';
 import 'src/commands/clean.dart';
+import 'src/commands/create.dart';
+import 'util/logger.dart';
 
 Future<int?> run(List<String> args) => NgdartCommandRunner().run(args);
 
 class NgdartCommandRunner extends CommandRunner<int> {
   NgdartCommandRunner()
       : super(appName,
-            'A command-line tool for creating and managing AngularDart projects.') {
+            'A command-line tool for creating and managing AngularDart projects.',) {
     argParser.addFlag('version',
-        abbr: 'v', negatable: false, help: 'Prints the version of ngdart.');
+        abbr: 'v', negatable: false, help: 'Prints the version of ngdart.',);
     argParser.addFlag('verbose',
-        negatable: false, help: 'Show additional command output');
+        negatable: false, help: 'Show additional command output',);
     addCommand(CreateCommand());
     addCommand(CleanCommand());
   }
@@ -29,7 +28,7 @@ class NgdartCommandRunner extends CommandRunner<int> {
       print(packageVersion);
       return 0;
     }
-    AppLogger.isVerbose = topLevelResults['verbose'];
+    AppLogger.isVerbose = topLevelResults['verbose'] as bool;
     // In the case of `help`, `null` is returned. Treat that as success.
     return await super.runCommand(topLevelResults) ?? 0;
   }
