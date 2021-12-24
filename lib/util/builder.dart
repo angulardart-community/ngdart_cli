@@ -44,8 +44,7 @@ class _TemplateBuilder implements Builder {
       return "'$item'";
     }).join(',');
 
-    await buildStep.writeAsString(
-        targetFile, '''
+    await buildStep.writeAsString(targetFile, '''
 // Generated code. Do not modify by hand (unless you know what you're doing).
 
 part of '$name.dart';

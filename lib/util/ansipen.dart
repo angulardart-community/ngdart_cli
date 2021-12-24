@@ -1,10 +1,16 @@
 import 'package:ansicolor/ansicolor.dart';
 
-AnsiPen errorPen = AnsiPen()..black()..xterm(160, bg: true);
+AnsiPen errorPen = AnsiPen()
+  ..black()
+  ..xterm(160, bg: true);
 AnsiPen errorTriangle = AnsiPen()..xterm(160);
-AnsiPen progressPen = AnsiPen()..black()..xterm(045, bg: true);
+AnsiPen progressPen = AnsiPen()
+  ..black()
+  ..xterm(045, bg: true);
 AnsiPen progressTriangle = AnsiPen()..xterm(045);
-AnsiPen successPen = AnsiPen()..black()..xterm(040, bg: true);
+AnsiPen successPen = AnsiPen()
+  ..black()
+  ..xterm(040, bg: true);
 AnsiPen successTriangle = AnsiPen()..xterm(040);
 
 // Unfortunately these are illegal characters...

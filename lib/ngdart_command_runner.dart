@@ -8,19 +8,19 @@ import 'constants.dart';
 import 'util/logger.dart';
 import 'src/commands/create.dart';
 import 'src/commands/clean.dart';
-import 'src/commands/build.dart';
 
 Future<int?> run(List<String> args) => NgdartCommandRunner().run(args);
 
 class NgdartCommandRunner extends CommandRunner<int> {
-  NgdartCommandRunner() : super(appName, 'A command-line tool for creating and managing AngularDart projects.') {
-    argParser.addFlag('version', abbr: 'v',
-        negatable: false, help: 'Prints the version of ngdart.');
-    argParser.addFlag('verbose', negatable: false, help: 'Show additional command output');
+  NgdartCommandRunner()
+      : super(appName,
+            'A command-line tool for creating and managing AngularDart projects.') {
+    argParser.addFlag('version',
+        abbr: 'v', negatable: false, help: 'Prints the version of ngdart.');
+    argParser.addFlag('verbose',
+        negatable: false, help: 'Show additional command output');
     addCommand(CreateCommand());
     addCommand(CleanCommand());
-	addCommand(NgBuildCommand());
-	addCommand(NgServeCommand());
   }
 
   @override

@@ -1,6 +1,8 @@
-import 'package:webdev/src/command/build_command.dart';
+// // @dart=2.9
 
-class NgBuildCommand extends BuildCommand {
-  @override
-  String description = 'Build an AngularDart app.';
-}
+// import 'package:webdev/src/command/build_command.dart';
+
+// class NgBuildCommand extends BuildCommand {
+//   @override
+//   String description = 'Build an AngularDart app.';
+// }
