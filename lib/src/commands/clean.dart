@@ -3,7 +3,8 @@ import 'dart:io';
 
 import 'package:args/command_runner.dart';
 import 'package:cli_util/cli_logging.dart';
-import 'package:ngdart/src/util/logger.dart';
+
+import '../util/logger.dart';
 
 class CleanCommand extends Command<int> {
   @override
@@ -23,27 +24,23 @@ class CleanCommand extends Command<int> {
     final pubspec = File('pubspec.yaml');
     final logger = Logger.standard(ansi: Ansi(true));
 
-    try {
-      if (!(await pubspec.exists())) {
-        throw Exception('pubspec.yaml not found!');
-      }
-      if (await buildDir.exists()) {
-        final progress = logger.progress('Deleting build');
-        await buildDir.delete(recursive: true);
-        progress.finish(showTiming: true);
-      }
-      if (await toolDir.exists()) {
-        final progress = logger.progress('Deleting .dart_tools');
-        await toolDir.delete(recursive: true);
-        progress.finish(showTiming: true);
-      }
-      if (await packages.exists()) {
-        final progress = logger.progress('Deleting .packages');
-        await packages.delete();
-        progress.finish(showTiming: true);
-      }
-    } catch (e) {
-      throw Exception(e);
+    if (!(await pubspec.exists())) {
+      throw Exception('pubspec.yaml not found!');
+    }
+    if (await buildDir.exists()) {
+      final progress = logger.progress('Deleting build');
+      await buildDir.delete(recursive: true);
+      progress.finish(showTiming: true);
+    }
+    if (await toolDir.exists()) {
+      final progress = logger.progress('Deleting .dart_tools');
+      await toolDir.delete(recursive: true);
+      progress.finish(showTiming: true);
+    }
+    if (await packages.exists()) {
+      final progress = logger.progress('Deleting .packages');
+      await packages.delete();
+      progress.finish(showTiming: true);
     }
     success('All clean!');
 

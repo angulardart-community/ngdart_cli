@@ -10,10 +10,10 @@ Future<void> main(List<String> args) async {
   try {
     await runner.run(args);
   } on UsageException catch (e) {
-		error('$e');
+    error('$e');
     exit(64);
   } catch (e) {
-		error('$e');
+    error('$e');
     exit(1);
   }
 }

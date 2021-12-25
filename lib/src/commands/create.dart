@@ -70,7 +70,7 @@ class CreateCommand extends Command<int> {
     final projectName =
         normalizeProjectName(readArg('Requires a project name'));
     // var progress = AppLogger.logger.progress('Creating project');
-		info('Creating project...');
+    info('Creating project...');
     await createNewProject(argResults!, projectName);
     // progress.finish(showTiming: true);
     success('Created project "$projectName"');
