@@ -32,15 +32,15 @@ class NgdartCommandRunner extends CommandRunner<int> {
   }
 
   @override
-  Future<int> runCommand(ArgResults topLevelResults) async {
-    if (topLevelResults['version'] as bool) {
+  Future<int> runCommand(ArgResults results) async {
+    if (results['version'] as bool) {
       stdout.writeln(packageVersion);
       return 0;
     }
-    logger = (topLevelResults['verbose'] as bool)
+    logger = (results['verbose'] as bool)
         ? Logger.verbose(ansi: Ansi(true))
         : Logger.standard(ansi: Ansi(true));
     // In the case of `help`, `null` is returned. Treat that as success.
-    return await super.runCommand(topLevelResults) ?? 0;
+    return await super.runCommand(results) ?? 0;
   }
 }
