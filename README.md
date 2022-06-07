@@ -1,23 +1,22 @@
-# ngdart
+# ngdart_cli
 
-[![Pub package](https://img.shields.io/pub/v/ngdart.svg)](https://pub.dev/packages/ngdart)
-![GitHub](https://img.shields.io/github/license/gzgavinzhao/ngdart)
+[![Pub package](https://img.shields.io/pub/v/ngdart_cli.svg)](https://pub.dev/packages/ngdart_cli)
+![GitHub](https://img.shields.io/github/license/angulardart-community/ngdart_cli)
 
 A command-line tool for creating and managing AngularDart projects.
 
 ## Usage
 
-`ngdart` is not meant to be used as a dependency but a command-line tool. Hence, you have to "activate" it:
+`ngdart_cli` is not meant to be used as a dependency but a command-line tool. Hence, you have to "activate" it:
 
 ```bash
-dart pub global activate ngdart
+dart pub global activate ngdart_cli
 ```
 
 Dart will detect automatically if you have added the Pub executables path to your environment variables. Follow its instructions if you haven't.
 
-If you use the Dart SDK provided by the Flutter SDK, it is highly recommended to also add the Dart SDK's bin to your environment variables (otherwise sometimes the program can't find `pub`, which is not directly provided in the Flutter SDK). It is located at `path/to/flutter/sdk/bin/cache/dart-sdk/bin`
-
-To create a new AngularDart project:
+To create a new AngularDart project (note that the actual command is `ngdart`,
+not `ngdart_cli`):
 
 ```bash
 ngdart create <package_name>
@@ -40,6 +39,6 @@ Feel free to create pull requests on any of these goals! :) To prevent doing dup
 
 * [x] Add `--verbose` global flag.
 * [ ] Prompt user to update (by checking the latest version on Pub and compare to [`packageVersion`](lib/src/version.dart)). [currently working on]
-* [x] Run `pub get` (or prompt the user to run) after creating a project.
-* [ ] Add `ngdart build` and `ngdart serve` command (likely from [webdev](https://pub.dev/packages/webdev), but null safety has been a problem for me).
+* [x] Run `dart pub get` (or prompt the user to run) after creating a project.
+* [ ] Add `ngdart build` and `ngdart serve` command (likely from [webdev](https://pub.dev/packages/webdev), but null safety has been a problem for me). [currently working on]
 * [ ] Generate components (a function that [angular_cli](https://pub.dev/packages/angular_cli) provides, though I'm unsure if this is useful for many developers).
