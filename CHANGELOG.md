@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+
+## [1.2.0] - 2022-06-03
+
+### Changed 
+- Rename the package name from `ngdart` to `ngdart_cli` in order to free up this package name 
+  for the main angular package.
+- Small dependency packages version updates.
+- Add `build_version` to update project version in the package sources.
+
 ## [1.1.0] - 2021-12-25
 
 ### Fixed

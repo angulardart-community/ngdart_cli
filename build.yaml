@@ -7,13 +7,13 @@ targets:
         - templates/**
         - $package$
     builders:
-      ngdart:
+      ngdart_cli:
         generate_for:
           - lib/src/templates/*.dart
         enabled: true
 
 builders:
-  ngdart:
+  ngdart_cli:
     import: "lib/src/util/builder.dart"
     builder_factories: ["buildTemplate"]
     build_extensions: {".dart": [".g.dart"]}

@@ -1,6 +1,6 @@
 name: __projectName__
 description: A web app that uses AngularDart Components
-# version: 0.0.
+version: 0.0.1
 # homepage: https://www.example.com
 
 environment:
@@ -8,11 +8,12 @@ environment:
 
 dependencies:
   angular: ^7.0.2
-  ngcomponents: ^1.0.2
+  ngcomponents: ^1.1.0
 
 dev_dependencies:
   angular_test: ^4.0.1
   build_runner: ^2.1.7
+  build_version: ^2.1.1
   build_test: ^2.1.5
   build_web_compilers: ^3.2.2
   lints: ^1.0.1

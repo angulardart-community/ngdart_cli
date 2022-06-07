@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:args/command_runner.dart';
-import 'package:ngdart/src/ngdart_command_runner.dart';
-import 'package:ngdart/src/util/logger.dart';
+import 'package:ngdart_cli/src/ngdart_command_runner.dart';
+import 'package:ngdart_cli/src/util/logger.dart';
 
 Future<void> main(List<String> args) async {
   final runner = NgdartCommandRunner();
