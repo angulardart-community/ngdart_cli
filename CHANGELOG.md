@@ -9,11 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.2.0] - 2022-06-03
 
 ### Changed 
-- Rename the package name from ndart to ndart_cli in order to free up this package name 
+- Renamed the package name from ndart to ndart_cli in order to free up this package name 
   for the main angular package
-- small dependency packages version updates
-- set // @dart=2.9 in main.dart to prevent null sound issue messages until ngcomponent will be updated
-- added build_version to update project version in the package sources
+- Small dependency packages version updates
+- Added build_version to update project version in the package sources
 
 ## [1.1.0] - 2021-12-25
 
