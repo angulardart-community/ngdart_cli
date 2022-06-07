@@ -9,10 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.2.0] - 2022-06-03
 
 ### Changed 
-- Renamed the package name from ndart to ndart_cli in order to free up this package name 
-  for the main angular package
-- Small dependency packages version updates
-- Added build_version to update project version in the package sources
+- Rename the package name from `ngdart` to `ngdart_cli` in order to free up this package name 
+  for the main angular package.
+- Small dependency packages version updates.
+- Add `build_version` to update project version in the package sources.
 
 ## [1.1.0] - 2021-12-25
 
