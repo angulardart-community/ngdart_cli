@@ -81,8 +81,8 @@ class CreateCommand extends Command<int> {
         "\nRunning 'pub get' in the project folder",
       );
       await Process.run(
-        'pub',
-        ['get'],
+        'dart',
+        ['pub','get'],
         runInShell: true,
         workingDirectory: '$projectName/',
       ).onError((error, stackTrace) => throw Exception(error));
