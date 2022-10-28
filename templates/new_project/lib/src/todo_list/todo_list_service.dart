@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:angular/di.dart';
+import 'package:ngdart/di.dart';
 
 // Mock service emulating access to a to-do list stored on a server.
 @Injectable()

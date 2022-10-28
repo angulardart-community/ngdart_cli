@@ -1,5 +1,5 @@
 @TestOn('browser')
-import 'package:angular_test/angular_test.dart';
+import 'package:ngtest/ngtest.dart';
 import 'package:test/test.dart';
 import 'package:__projectName__/app_component.dart';
 import 'package:__projectName__/app_component.template.dart' as ng;

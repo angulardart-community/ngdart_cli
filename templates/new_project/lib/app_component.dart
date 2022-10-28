@@ -1,4 +1,4 @@
-import 'package:angular/angular.dart';
+import 'package:ngdart/angular.dart';
 
 import 'src/todo_list/todo_list_component.dart';
 

@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:angular/angular.dart';
+import 'package:ngdart/angular.dart';
 import 'package:ngcomponents/angular_components.dart';
 
 import 'todo_list_service.dart';
